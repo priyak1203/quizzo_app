@@ -2,6 +2,10 @@ import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import 'express-async-errors';
 
+// other packages
+import helmet from 'helmet';
+import cors from 'cors';
+
 dotenv.config();
 
 const app: Express = express();
@@ -14,6 +18,9 @@ import quizRouter from './routes/quizRoutes';
 import errorHandler from './middlewares/errorHandler';
 
 // middlewares
+app.set('trust proxy', 1);
+app.use(helmet());
+app.use(cors());
 app.use(express.json());
 
 // routes
