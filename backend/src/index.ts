@@ -15,6 +15,7 @@ import authRouter from './routes/authRoutes';
 import quizRouter from './routes/quizRoutes';
 
 // error handlers
+import notFoundHandler from './middlewares/notFound';
 import errorHandler from './middlewares/errorHandler';
 
 // middlewares
@@ -30,6 +31,9 @@ app.get('/', (req: Request, res: Response) => {
 
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/quiz', quizRouter);
+
+// Not found route middleware
+app.use(notFoundHandler);
 
 // Error handler middleware
 app.use(errorHandler);
