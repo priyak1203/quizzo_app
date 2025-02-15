@@ -8,6 +8,7 @@ const app: Express = express();
 
 // routers
 import authRouter from './routes/authRoutes';
+import quizRouter from './routes/quizRoutes';
 
 // error handlers
 import errorHandler from './middlewares/errorHandler';
@@ -21,6 +22,7 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1/quiz', quizRouter);
 
 // Error handler middleware
 app.use(errorHandler);
