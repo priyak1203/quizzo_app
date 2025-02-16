@@ -24,7 +24,7 @@ export const createQuiz = async (req: Request, res: Response) => {
 
 // Get All Quiz
 export const getAllQuiz = async (req: Request, res: Response) => {
-  const { teacherId } = req.body;
+  const teacherId: string = req.query.teacherId as string;
 
   if (!teacherId) {
     throw new BadRequestError(`Please provide teacher info`);
@@ -46,7 +46,7 @@ export const getAllQuiz = async (req: Request, res: Response) => {
 // Get Single Quiz
 export const getSingleQuiz = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { teacherId } = req.body;
+  const teacherId: string = req.query.teacherId as string;
 
   if (!teacherId) {
     throw new BadRequestError(`Please provide teacher info`);
@@ -69,7 +69,8 @@ export const getSingleQuiz = async (req: Request, res: Response) => {
 // Update Quiz
 export const updateQuiz = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { title, description, teacherId } = req.body;
+  const { title, description } = req.body;
+  const teacherId: string = req.query.teacherId as string;
 
   if (!teacherId) {
     throw new BadRequestError(`Please provide teacher info`);
@@ -103,7 +104,7 @@ export const updateQuiz = async (req: Request, res: Response) => {
 // Delete Quiz
 export const deleteQuiz = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const { teacherId } = req.body;
+  const teacherId: string = req.query.teacherId as string;
 
   if (!teacherId) {
     throw new BadRequestError(`Please provide teacher info`);
@@ -123,7 +124,6 @@ export const deleteQuiz = async (req: Request, res: Response) => {
   await db.quiz.delete({
     where: {
       id,
-      teacherId,
     },
   });
 
